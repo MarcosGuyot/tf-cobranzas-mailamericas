@@ -1,0 +1,1486 @@
+{
+    "name": "TF - B - Envio Recordatorios Aprobados",
+    "flow": [
+        {
+            "id": 1,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 11237461
+            },
+            "mapper": {
+                "base": "app7mr3xIlsDQ4rrM",
+                "view": "viwBWvtkFJzVrgLGH",
+                "table": "tbl6uobz69XVLlvSV",
+                "maxRecords": "10",
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "Airtable - Buscar facturas aprobadas"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "77030b7ecfb123cf"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "mode": "chose",
+                            "label": "TF - MailAmericas Cobranzas"
+                        },
+                        "sort": {
+                            "mode": "chose"
+                        },
+                        "view": {
+                            "mode": "chose",
+                            "label": "Para_Enviar"
+                        },
+                        "table": {
+                            "mode": "chose",
+                            "label": "Facturas"
+                        },
+                        "fields": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "Marcos's Airtable Token or Key connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "type": "select",
+                                "label": "Field",
+                                "dynamic": true,
+                                "options": []
+                            },
+                            {
+                                "name": "direction",
+                                "type": "select",
+                                "label": "Direction",
+                                "options": [
+                                    {
+                                        "label": "Descending",
+                                        "value": "desc"
+                                    },
+                                    {
+                                        "label": "Ascending",
+                                        "value": "asc"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "select",
+                        "label": "Output Fields",
+                        "multiple": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Nro_Factura",
+                        "type": "text",
+                        "label": "Nro_Factura"
+                    },
+                    {
+                        "name": "Monto",
+                        "type": "number",
+                        "label": "Monto"
+                    },
+                    {
+                        "name": "Fecha_Emision",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha_Emision"
+                    },
+                    {
+                        "name": "Fecha_Vencimiento",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha_Vencimiento"
+                    },
+                    {
+                        "name": "Estado_Pago",
+                        "type": "text",
+                        "label": "Estado_Pago"
+                    },
+                    {
+                        "name": "Dias_Vencida",
+                        "type": "text",
+                        "label": "Dias_Vencida"
+                    },
+                    {
+                        "name": "Tramo_Deuda",
+                        "type": "text",
+                        "label": "Tramo_Deuda"
+                    },
+                    {
+                        "name": "Cliente",
+                        "spec": {
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Cliente"
+                    },
+                    {
+                        "name": "Email_Cliente",
+                        "type": "array",
+                        "label": "Email_Cliente"
+                    },
+                    {
+                        "name": "Contacto_Cliente",
+                        "type": "array",
+                        "label": "Contacto_Cliente"
+                    },
+                    {
+                        "name": "Pais_Cliente",
+                        "type": "array",
+                        "label": "Pais_Cliente"
+                    },
+                    {
+                        "name": "Estado_Flujo",
+                        "type": "text",
+                        "label": "Estado_Flujo"
+                    },
+                    {
+                        "name": "Asunto_Email_IA",
+                        "type": "text",
+                        "label": "Asunto_Email_IA"
+                    },
+                    {
+                        "name": "Borrador_Email_IA",
+                        "type": "text",
+                        "label": "Borrador_Email_IA",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Aprobado",
+                        "type": "boolean",
+                        "label": "Aprobado"
+                    },
+                    {
+                        "name": "Revisor",
+                        "type": "text",
+                        "label": "Revisor"
+                    },
+                    {
+                        "name": "Fecha_Aprobacion",
+                        "type": "date",
+                        "label": "Fecha_Aprobacion"
+                    },
+                    {
+                        "name": "Anomalia_IA",
+                        "type": "boolean",
+                        "label": "Anomalia_IA"
+                    },
+                    {
+                        "name": "Motivo_Anomalia",
+                        "type": "text",
+                        "label": "Motivo_Anomalia",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Modelo_IA",
+                        "type": "text",
+                        "label": "Modelo_IA"
+                    },
+                    {
+                        "name": "Tokens_Usados",
+                        "type": "number",
+                        "label": "Tokens_Usados"
+                    },
+                    {
+                        "name": "Costo_Estimado_USD",
+                        "type": "number",
+                        "label": "Costo_Estimado_USD"
+                    },
+                    {
+                        "name": "Log_Errores",
+                        "spec": {
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Log_Errores"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "google-email:sendAnEmail",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 11117972
+            },
+            "mapper": {
+                "to": [
+                    "{{1.Email_Cliente[1]}}"
+                ],
+                "content": "   <div style=\"white-space: pre-line;\">{{1.Borrador_Email_IA}}</div>",
+                "subject": "{{1.Asunto_Email_IA}}",
+                "bodyType": "rawHtml"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "name": "Gmail - Enviar recordatorio"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "b4f3f5a655f0a705"
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "from": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "bodyType": {
+                            "label": "Raw HTML"
+                        },
+                        "attachments": {
+                            "mode": "chose"
+                        },
+                        "emailHeaders": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                            },
+                            "label": "Clinica (marcosguyot95@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-email",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true,
+                            "validate": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "rawHtml",
+                                "collection"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "filename",
+                                    "type": "filename",
+                                    "label": "File name",
+                                    "required": true,
+                                    "semantic": "file:name"
+                                },
+                                {
+                                    "name": "data",
+                                    "type": "buffer",
+                                    "label": "Data",
+                                    "required": true,
+                                    "semantic": "file:data"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Attachment"
+                        },
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "From"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "CC recipients"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "BCC recipients"
+                    },
+                    {
+                        "name": "emailHeaders",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Key",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Email header"
+                        },
+                        "type": "array",
+                        "label": "Additional email headers"
+                    },
+                    {
+                        "name": "content",
+                        "type": "text",
+                        "label": "Content"
+                    }
+                ]
+            },
+            "onerror": [
+                {
+                    "id": 4,
+                    "module": "airtable:ActionUpdateRecords",
+                    "version": 3,
+                    "parameters": {
+                        "__IMTCONN__": 11237461
+                    },
+                    "mapper": {
+                        "id": "{{1.id}}",
+                        "base": "app7mr3xIlsDQ4rrM",
+                        "table": "tbl6uobz69XVLlvSV",
+                        "record": {
+                            "fldi3xk3LUUWmjt13": "Error"
+                        },
+                        "typecast": false,
+                        "useColumnId": false
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 600,
+                            "y": 150,
+                            "name": "Airtable - Marcar Error"
+                        },
+                        "setupValidation": {
+                            "result": {
+                                "valid": true,
+                                "fields": []
+                            },
+                            "version": 1,
+                            "configuration": "615849640c6de88e"
+                        },
+                        "restore": {
+                            "expect": {
+                                "base": {
+                                    "label": "TF - MailAmericas Cobranzas"
+                                },
+                                "table": {
+                                    "label": "Facturas"
+                                },
+                                "record": {
+                                    "nested": {
+                                        "fld0myG5goqpGtSRk": {
+                                            "mode": "edit"
+                                        },
+                                        "fld5Y5dGZE4urufXq": {
+                                            "mode": "edit"
+                                        },
+                                        "fld8J4fM2Gpi7SzXY": {
+                                            "mode": "chose"
+                                        },
+                                        "fldKxXJha2tpKwzgx": {
+                                            "mode": "chose"
+                                        },
+                                        "fldi3xk3LUUWmjt13": {
+                                            "mode": "chose",
+                                            "label": "Error"
+                                        },
+                                        "fldj8UgjFOFMEQkiw": {
+                                            "mode": "chose"
+                                        },
+                                        "fldtSXcfHH554Za6A": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "typecast": {
+                                    "mode": "chose"
+                                },
+                                "useColumnId": {
+                                    "mode": "chose"
+                                }
+                            },
+                            "parameters": {
+                                "__IMTCONN__": {
+                                    "data": {
+                                        "scoped": "true",
+                                        "connection": "airtable2"
+                                    },
+                                    "label": "Marcos's Airtable Token or Key connection"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "__IMTCONN__",
+                                "type": "account:airtable3,airtable2",
+                                "label": "Connection",
+                                "required": true
+                            }
+                        ],
+                        "expect": [
+                            {
+                                "name": "base",
+                                "type": "select",
+                                "label": "Base",
+                                "required": true
+                            },
+                            {
+                                "name": "typecast",
+                                "type": "boolean",
+                                "label": "Smart links",
+                                "required": true
+                            },
+                            {
+                                "name": "useColumnId",
+                                "type": "boolean",
+                                "label": "Use Column ID",
+                                "required": true
+                            },
+                            {
+                                "name": "table",
+                                "type": "select",
+                                "label": "Table",
+                                "required": true
+                            },
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "Record ID",
+                                "required": true
+                            },
+                            {
+                                "name": "record",
+                                "spec": [
+                                    {
+                                        "name": "fldCJESkijP9Kq4Fr",
+                                        "type": "text",
+                                        "label": "Nro_Factura"
+                                    },
+                                    {
+                                        "name": "fldvGKWUrz6up3Kzt",
+                                        "type": "number",
+                                        "label": "Monto"
+                                    },
+                                    {
+                                        "name": "fldhIgWJlG4WPmwUD",
+                                        "time": false,
+                                        "type": "date",
+                                        "label": "Fecha_Emision"
+                                    },
+                                    {
+                                        "name": "fld1QPb6ppshldk31",
+                                        "time": false,
+                                        "type": "date",
+                                        "label": "Fecha_Vencimiento"
+                                    },
+                                    {
+                                        "mode": "edit",
+                                        "name": "fld0myG5goqpGtSRk",
+                                        "type": "select",
+                                        "label": "Estado_Pago"
+                                    },
+                                    {
+                                        "name": "fldj8UgjFOFMEQkiw",
+                                        "spec": {
+                                            "name": "value",
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Cliente"
+                                    },
+                                    {
+                                        "mode": "edit",
+                                        "name": "fldi3xk3LUUWmjt13",
+                                        "type": "select",
+                                        "label": "Estado_Flujo"
+                                    },
+                                    {
+                                        "name": "fld84Wvu8F9KNxF9z",
+                                        "type": "text",
+                                        "label": "Asunto_Email_IA"
+                                    },
+                                    {
+                                        "name": "fldZD9WZZFgiUtITM",
+                                        "type": "text",
+                                        "label": "Borrador_Email_IA"
+                                    },
+                                    {
+                                        "name": "fld8J4fM2Gpi7SzXY",
+                                        "type": "boolean",
+                                        "label": "Aprobado"
+                                    },
+                                    {
+                                        "name": "fldItdG2dKNVbfooL",
+                                        "type": "text",
+                                        "label": "Revisor"
+                                    },
+                                    {
+                                        "name": "fldtSXcfHH554Za6A",
+                                        "type": "boolean",
+                                        "label": "Anomalia_IA"
+                                    },
+                                    {
+                                        "name": "fldupOMs0h1e97CNj",
+                                        "type": "text",
+                                        "label": "Motivo_Anomalia"
+                                    },
+                                    {
+                                        "mode": "edit",
+                                        "name": "fld5Y5dGZE4urufXq",
+                                        "type": "select",
+                                        "label": "Modelo_IA"
+                                    },
+                                    {
+                                        "name": "fldziIShAbczUXyUq",
+                                        "type": "number",
+                                        "label": "Tokens_Usados"
+                                    },
+                                    {
+                                        "name": "fldmiiqTrJxm6R3YY",
+                                        "type": "number",
+                                        "label": "Costo_Estimado_USD"
+                                    },
+                                    {
+                                        "name": "fldKxXJha2tpKwzgx",
+                                        "spec": {
+                                            "name": "value",
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Log_Errores"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Record"
+                            }
+                        ],
+                        "interface": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "createdTime",
+                                "type": "date",
+                                "label": "Created Time"
+                            },
+                            {
+                                "name": "Nro_Factura",
+                                "type": "text",
+                                "label": "Nro_Factura"
+                            },
+                            {
+                                "name": "Monto",
+                                "type": "number",
+                                "label": "Monto"
+                            },
+                            {
+                                "name": "Fecha_Emision",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha_Emision"
+                            },
+                            {
+                                "name": "Fecha_Vencimiento",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha_Vencimiento"
+                            },
+                            {
+                                "name": "Estado_Pago",
+                                "type": "text",
+                                "label": "Estado_Pago"
+                            },
+                            {
+                                "name": "Dias_Vencida",
+                                "type": "text",
+                                "label": "Dias_Vencida"
+                            },
+                            {
+                                "name": "Tramo_Deuda",
+                                "type": "text",
+                                "label": "Tramo_Deuda"
+                            },
+                            {
+                                "name": "Cliente",
+                                "spec": {
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Cliente"
+                            },
+                            {
+                                "name": "Email_Cliente",
+                                "type": "array",
+                                "label": "Email_Cliente"
+                            },
+                            {
+                                "name": "Contacto_Cliente",
+                                "type": "array",
+                                "label": "Contacto_Cliente"
+                            },
+                            {
+                                "name": "Pais_Cliente",
+                                "type": "array",
+                                "label": "Pais_Cliente"
+                            },
+                            {
+                                "name": "Estado_Flujo",
+                                "type": "text",
+                                "label": "Estado_Flujo"
+                            },
+                            {
+                                "name": "Asunto_Email_IA",
+                                "type": "text",
+                                "label": "Asunto_Email_IA"
+                            },
+                            {
+                                "name": "Borrador_Email_IA",
+                                "type": "text",
+                                "label": "Borrador_Email_IA",
+                                "multiline": true
+                            },
+                            {
+                                "name": "Aprobado",
+                                "type": "boolean",
+                                "label": "Aprobado"
+                            },
+                            {
+                                "name": "Revisor",
+                                "type": "text",
+                                "label": "Revisor"
+                            },
+                            {
+                                "name": "Fecha_Aprobacion",
+                                "type": "date",
+                                "label": "Fecha_Aprobacion"
+                            },
+                            {
+                                "name": "Anomalia_IA",
+                                "type": "boolean",
+                                "label": "Anomalia_IA"
+                            },
+                            {
+                                "name": "Motivo_Anomalia",
+                                "type": "text",
+                                "label": "Motivo_Anomalia",
+                                "multiline": true
+                            },
+                            {
+                                "name": "Modelo_IA",
+                                "type": "text",
+                                "label": "Modelo_IA"
+                            },
+                            {
+                                "name": "Tokens_Usados",
+                                "type": "number",
+                                "label": "Tokens_Usados"
+                            },
+                            {
+                                "name": "Costo_Estimado_USD",
+                                "type": "number",
+                                "label": "Costo_Estimado_USD"
+                            },
+                            {
+                                "name": "Log_Errores",
+                                "spec": {
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Log_Errores"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": 5,
+                    "module": "airtable:ActionCreateRecord",
+                    "version": 3,
+                    "parameters": {
+                        "__IMTCONN__": 11237461
+                    },
+                    "mapper": {
+                        "base": "app7mr3xIlsDQ4rrM",
+                        "table": "tbl6c1sGwV1Wu9QRU",
+                        "record": {
+                            "fld9DCWB8JeFPtvcP": false,
+                            "fldETAdqTSoA2R3T6": "0",
+                            "fldQUDfhhnirMHM3s": "{{2.error.message}}",
+                            "fldZXT2FZi3ETDkhn": "Gmail - Enviar recordatorio",
+                            "fldk6htRZ9tBkTLUA": [
+                                "{{4.id}}"
+                            ]
+                        },
+                        "typecast": false,
+                        "useColumnId": false
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 900,
+                            "y": 150,
+                            "name": "Airtable - Registrar en Log_Errores"
+                        },
+                        "setupValidation": {
+                            "result": {
+                                "valid": true,
+                                "fields": []
+                            },
+                            "version": 1,
+                            "configuration": "63749e7189a4811e"
+                        },
+                        "restore": {
+                            "expect": {
+                                "base": {
+                                    "label": "TF - MailAmericas Cobranzas"
+                                },
+                                "table": {
+                                    "label": "Log_Errores",
+                                    "nested": [
+                                        {
+                                            "name": "record",
+                                            "spec": [
+                                                {
+                                                    "name": "fldk6htRZ9tBkTLUA",
+                                                    "spec": {
+                                                        "label": "Record ID"
+                                                    },
+                                                    "type": "array",
+                                                    "label": "Factura"
+                                                },
+                                                {
+                                                    "name": "fldZXT2FZi3ETDkhn",
+                                                    "type": "text",
+                                                    "label": "Modulo_Make"
+                                                },
+                                                {
+                                                    "name": "fldQUDfhhnirMHM3s",
+                                                    "type": "text",
+                                                    "label": "Mensaje_Error",
+                                                    "multiline": true
+                                                },
+                                                {
+                                                    "name": "fldETAdqTSoA2R3T6",
+                                                    "type": "number",
+                                                    "label": "Reintentos"
+                                                },
+                                                {
+                                                    "name": "fld9DCWB8JeFPtvcP",
+                                                    "type": "boolean",
+                                                    "label": "Resuelto"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "Record"
+                                        }
+                                    ]
+                                },
+                                "record": {
+                                    "nested": {
+                                        "fld9DCWB8JeFPtvcP": {
+                                            "mode": "chose"
+                                        },
+                                        "fldk6htRZ9tBkTLUA": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        }
+                                    }
+                                },
+                                "typecast": {
+                                    "mode": "chose"
+                                },
+                                "useColumnId": {
+                                    "mode": "chose"
+                                }
+                            },
+                            "parameters": {
+                                "__IMTCONN__": {
+                                    "data": {
+                                        "scoped": "true",
+                                        "connection": "airtable2"
+                                    },
+                                    "label": "Marcos's Airtable Token or Key connection"
+                                }
+                            }
+                        },
+                        "parameters": [
+                            {
+                                "name": "__IMTCONN__",
+                                "type": "account:airtable3,airtable2",
+                                "label": "Connection",
+                                "required": true
+                            }
+                        ],
+                        "expect": [
+                            {
+                                "name": "base",
+                                "type": "select",
+                                "label": "Base",
+                                "required": true
+                            },
+                            {
+                                "name": "typecast",
+                                "type": "boolean",
+                                "label": "Smart links",
+                                "required": true
+                            },
+                            {
+                                "name": "useColumnId",
+                                "type": "boolean",
+                                "label": "Use Column ID",
+                                "required": true
+                            },
+                            {
+                                "name": "table",
+                                "type": "select",
+                                "label": "Table",
+                                "required": true
+                            },
+                            {
+                                "name": "record",
+                                "spec": [
+                                    {
+                                        "name": "fldk6htRZ9tBkTLUA",
+                                        "spec": {
+                                            "name": "value",
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Factura"
+                                    },
+                                    {
+                                        "name": "fldZXT2FZi3ETDkhn",
+                                        "type": "text",
+                                        "label": "Modulo_Make"
+                                    },
+                                    {
+                                        "name": "fldQUDfhhnirMHM3s",
+                                        "type": "text",
+                                        "label": "Mensaje_Error"
+                                    },
+                                    {
+                                        "name": "fldETAdqTSoA2R3T6",
+                                        "type": "number",
+                                        "label": "Reintentos"
+                                    },
+                                    {
+                                        "name": "fld9DCWB8JeFPtvcP",
+                                        "type": "boolean",
+                                        "label": "Resuelto"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Record"
+                            }
+                        ],
+                        "interface": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "createdTime",
+                                "type": "date",
+                                "label": "Created Time"
+                            },
+                            {
+                                "name": "Error_ID",
+                                "type": "number",
+                                "label": "Error_ID"
+                            },
+                            {
+                                "name": "Fecha_Error",
+                                "type": "date",
+                                "label": "Fecha_Error"
+                            },
+                            {
+                                "name": "Factura",
+                                "spec": {
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Factura"
+                            },
+                            {
+                                "name": "Modulo_Make",
+                                "type": "text",
+                                "label": "Modulo_Make"
+                            },
+                            {
+                                "name": "Mensaje_Error",
+                                "type": "text",
+                                "label": "Mensaje_Error",
+                                "multiline": true
+                            },
+                            {
+                                "name": "Reintentos",
+                                "type": "number",
+                                "label": "Reintentos"
+                            },
+                            {
+                                "name": "Resuelto",
+                                "type": "boolean",
+                                "label": "Resuelto"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": 6,
+                    "module": "builtin:Ignore",
+                    "version": 1,
+                    "parameters": {},
+                    "mapper": {},
+                    "metadata": {
+                        "designer": {
+                            "x": 1200,
+                            "y": 150
+                        },
+                        "restore": {}
+                    }
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "module": "airtable:ActionUpdateRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 11237461
+            },
+            "mapper": {
+                "id": "{{1.id}}",
+                "base": "app7mr3xIlsDQ4rrM",
+                "table": "tbl6uobz69XVLlvSV",
+                "record": {
+                    "fldi3xk3LUUWmjt13": "Enviado"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": -150,
+                    "name": "Airtable - Marcar Enviado"
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "56f9cff1c863438e"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "TF - MailAmericas Cobranzas"
+                        },
+                        "table": {
+                            "label": "Facturas"
+                        },
+                        "record": {
+                            "nested": {
+                                "fld0myG5goqpGtSRk": {
+                                    "mode": "edit"
+                                },
+                                "fld5Y5dGZE4urufXq": {
+                                    "mode": "edit"
+                                },
+                                "fld8J4fM2Gpi7SzXY": {
+                                    "mode": "chose"
+                                },
+                                "fldKxXJha2tpKwzgx": {
+                                    "mode": "chose"
+                                },
+                                "fldi3xk3LUUWmjt13": {
+                                    "mode": "chose",
+                                    "label": "Enviado"
+                                },
+                                "fldj8UgjFOFMEQkiw": {
+                                    "mode": "chose"
+                                },
+                                "fldtSXcfHH554Za6A": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "Marcos's Airtable Token or Key connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Record ID",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldCJESkijP9Kq4Fr",
+                                "type": "text",
+                                "label": "Nro_Factura"
+                            },
+                            {
+                                "name": "fldvGKWUrz6up3Kzt",
+                                "type": "number",
+                                "label": "Monto"
+                            },
+                            {
+                                "name": "fldhIgWJlG4WPmwUD",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha_Emision"
+                            },
+                            {
+                                "name": "fld1QPb6ppshldk31",
+                                "time": false,
+                                "type": "date",
+                                "label": "Fecha_Vencimiento"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fld0myG5goqpGtSRk",
+                                "type": "select",
+                                "label": "Estado_Pago"
+                            },
+                            {
+                                "name": "fldj8UgjFOFMEQkiw",
+                                "spec": {
+                                    "name": "value",
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Cliente"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fldi3xk3LUUWmjt13",
+                                "type": "select",
+                                "label": "Estado_Flujo"
+                            },
+                            {
+                                "name": "fld84Wvu8F9KNxF9z",
+                                "type": "text",
+                                "label": "Asunto_Email_IA"
+                            },
+                            {
+                                "name": "fldZD9WZZFgiUtITM",
+                                "type": "text",
+                                "label": "Borrador_Email_IA"
+                            },
+                            {
+                                "name": "fld8J4fM2Gpi7SzXY",
+                                "type": "boolean",
+                                "label": "Aprobado"
+                            },
+                            {
+                                "name": "fldItdG2dKNVbfooL",
+                                "type": "text",
+                                "label": "Revisor"
+                            },
+                            {
+                                "name": "fldtSXcfHH554Za6A",
+                                "type": "boolean",
+                                "label": "Anomalia_IA"
+                            },
+                            {
+                                "name": "fldupOMs0h1e97CNj",
+                                "type": "text",
+                                "label": "Motivo_Anomalia"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fld5Y5dGZE4urufXq",
+                                "type": "select",
+                                "label": "Modelo_IA"
+                            },
+                            {
+                                "name": "fldziIShAbczUXyUq",
+                                "type": "number",
+                                "label": "Tokens_Usados"
+                            },
+                            {
+                                "name": "fldmiiqTrJxm6R3YY",
+                                "type": "number",
+                                "label": "Costo_Estimado_USD"
+                            },
+                            {
+                                "name": "fldKxXJha2tpKwzgx",
+                                "spec": {
+                                    "name": "value",
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Log_Errores"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Nro_Factura",
+                        "type": "text",
+                        "label": "Nro_Factura"
+                    },
+                    {
+                        "name": "Monto",
+                        "type": "number",
+                        "label": "Monto"
+                    },
+                    {
+                        "name": "Fecha_Emision",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha_Emision"
+                    },
+                    {
+                        "name": "Fecha_Vencimiento",
+                        "time": false,
+                        "type": "date",
+                        "label": "Fecha_Vencimiento"
+                    },
+                    {
+                        "name": "Estado_Pago",
+                        "type": "text",
+                        "label": "Estado_Pago"
+                    },
+                    {
+                        "name": "Dias_Vencida",
+                        "type": "text",
+                        "label": "Dias_Vencida"
+                    },
+                    {
+                        "name": "Tramo_Deuda",
+                        "type": "text",
+                        "label": "Tramo_Deuda"
+                    },
+                    {
+                        "name": "Cliente",
+                        "spec": {
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Cliente"
+                    },
+                    {
+                        "name": "Email_Cliente",
+                        "type": "array",
+                        "label": "Email_Cliente"
+                    },
+                    {
+                        "name": "Contacto_Cliente",
+                        "type": "array",
+                        "label": "Contacto_Cliente"
+                    },
+                    {
+                        "name": "Pais_Cliente",
+                        "type": "array",
+                        "label": "Pais_Cliente"
+                    },
+                    {
+                        "name": "Estado_Flujo",
+                        "type": "text",
+                        "label": "Estado_Flujo"
+                    },
+                    {
+                        "name": "Asunto_Email_IA",
+                        "type": "text",
+                        "label": "Asunto_Email_IA"
+                    },
+                    {
+                        "name": "Borrador_Email_IA",
+                        "type": "text",
+                        "label": "Borrador_Email_IA",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Aprobado",
+                        "type": "boolean",
+                        "label": "Aprobado"
+                    },
+                    {
+                        "name": "Revisor",
+                        "type": "text",
+                        "label": "Revisor"
+                    },
+                    {
+                        "name": "Fecha_Aprobacion",
+                        "type": "date",
+                        "label": "Fecha_Aprobacion"
+                    },
+                    {
+                        "name": "Anomalia_IA",
+                        "type": "boolean",
+                        "label": "Anomalia_IA"
+                    },
+                    {
+                        "name": "Motivo_Anomalia",
+                        "type": "text",
+                        "label": "Motivo_Anomalia",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Modelo_IA",
+                        "type": "text",
+                        "label": "Modelo_IA"
+                    },
+                    {
+                        "name": "Tokens_Usados",
+                        "type": "number",
+                        "label": "Tokens_Usados"
+                    },
+                    {
+                        "name": "Costo_Estimado_USD",
+                        "type": "number",
+                        "label": "Costo_Estimado_USD"
+                    },
+                    {
+                        "name": "Log_Errores",
+                        "spec": {
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Log_Errores"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
