@@ -23,7 +23,9 @@ Sistema que automatiza los recordatorios de pago de facturas vencidas: la IA red
 2. **Gate HITL (Airtable):** un revisor lee el borrador y tilda `Aprobado`. Airtable registra quién aprobó y cuándo. Sin aprobación, nada se envía.
 3. **Escenario B, envío (Make):** toma solo las facturas aprobadas, envía el email por Gmail y marca la factura como `Enviado`.
 
-Los dos escenarios tienen una ruta de error: si falla Gemini o Gmail, la factura pasa a `Error`, se registra en la tabla `Log_Errores` y el lote sigue con las demás facturas.
+Los dos escenarios tienen una ruta de error: si falla Gemini o Gmail, la factura pasa a `Error`, se registra en la tabla `Log_Errores` y la directiva `Retry` (antes `Break`) la reintenta automáticamente 3 veces cada 15 minutos, sin frenar el resto del lote.
+
+Los escenarios corren solos todos los días: el A a las 9:00 y el B a las 10:00 (hora de Buenos Aires).
 
 ## Stack
 
@@ -39,7 +41,8 @@ Los dos escenarios tienen una ruta de error: si falla Gemini o Gmail, la factura
 | Archivo | Contenido |
 | --- | --- |
 | `Trabajo-Final-Cobranzas-MailAmericas.pdf` | Documento completo: arquitectura, manual de datos y JSON, matriz de costos, malla de seguridad, dashboard y evidencias |
-| `arquitectura-cobranzas-mailamericas.png` / `.svg` | Mapa de arquitectura |
+| `Diagrama-Arquitectura-Cobranzas-MailAmericas.pdf` | Mapa de arquitectura en PDF |
+| `arquitectura-cobranzas-mailamericas.png` / `.svg` | Mapa de arquitectura en imagen |
 | `TF_-_A_-_Generacion_Recordatorios_blueprint.json` | Blueprint del Escenario A |
 | `TF_-_B_-_Envio_Recordatorios_Aprobados_blueprint.json` | Blueprint del Escenario B |
 | `capturas/` | Evidencias de las pruebas: lote procesado, anomalía, errores forzados, aprobación, envío, log y dashboard |
@@ -55,4 +58,4 @@ Los dos escenarios tienen una ruta de error: si falla Gemini o Gmail, la factura
 
 - Ningún email sale sin aprobación humana: el Escenario B solo lee la vista `Para_Enviar`, que exige `Aprobado` tildado.
 - Las API keys y tokens viven en las conexiones de Make; no están en este repositorio.
-- El dashboard muestra solo totales, sin acceso a datos de clientes.
+- El dashboard muestra los KPIs (tasa de aprobación, volumen de salida y tasa de error) y totales, sin acceso a datos de clientes.

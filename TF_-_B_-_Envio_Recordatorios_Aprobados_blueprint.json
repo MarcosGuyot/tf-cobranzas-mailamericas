@@ -1080,17 +1080,63 @@
                     }
                 },
                 {
-                    "id": 6,
-                    "module": "builtin:Ignore",
+                    "id": 7,
+                    "module": "builtin:Break",
                     "version": 1,
                     "parameters": {},
-                    "mapper": {},
+                    "mapper": {
+                        "retry": true,
+                        "count": "3",
+                        "interval": "15"
+                    },
                     "metadata": {
                         "designer": {
                             "x": 1200,
                             "y": 150
                         },
-                        "restore": {}
+                        "setupValidation": {
+                            "version": 1,
+                            "configuration": "e73641c3d150b6f3",
+                            "result": {
+                                "valid": true,
+                                "fields": []
+                            }
+                        },
+                        "restore": {
+                            "expect": {
+                                "retry": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "expect": [
+                            {
+                                "name": "retry",
+                                "type": "boolean",
+                                "label": "Retry automatically",
+                                "required": true
+                            },
+                            {
+                                "name": "count",
+                                "type": "uinteger",
+                                "label": "Number of retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 10000
+                                },
+                                "required": true
+                            },
+                            {
+                                "name": "interval",
+                                "type": "uinteger",
+                                "label": "Minutes between retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 44640
+                                },
+                                "required": true
+                            }
+                        ]
                     }
                 }
             ]
@@ -1474,7 +1520,7 @@
             "slots": null,
             "confidential": false,
             "dataloss": false,
-            "dlq": false,
+            "dlq": true,
             "freshVariables": false
         },
         "designer": {
